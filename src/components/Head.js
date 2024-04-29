@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/contants";
 import { cacheResults } from "../utils/searchSlice";
+import { Link } from "react-router-dom";
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -23,27 +24,11 @@ const Head = () => {
     };
   }, [searchQuery]);
 
-  // useEffect(() => {
-  //   // Check if searchQuery is not null or empty
-  //   if (searchQuery) {
-  //     // Call the getSearchSuggestion function or make API call here
-  //     getSearchSugsestion();
-  //     console.log(searchQuery);
-  //   } else {
-  //     console.log("Search query is null or empty, skipping API call.");
-  //   }
-
-  //   // Clean up function
-  //   return () => {
-  //     console.log("Cleanup function");
-  //   };
-  // }, [searchQuery]);
-
   const getSearchSugsestion = async () => {
-    console.log("API CALL-", searchQuery);
+    // console.log("API CALL-", searchQuery);
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
     const json = await data.json();
-    // console.log(json[1]);
+
     setSuggestions(json[1]);
     //update cache
     dispatch(
@@ -71,7 +56,7 @@ const Head = () => {
 
         <img
           className="h-8 mx-2"
-          src="https://vectorseek.com/wp-content/uploads/2021/01/YouTube-Logo-Vector.png"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1024px-YouTube_Logo_2017.svg.png"
           alt="youtube-logo"
         />
       </div>
